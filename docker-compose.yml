@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+
+  # Postgre latest version
+  postgredatabase:
+    image: postgres:latest
+    volumes:
+      - postgredatabase_volume:/var/lib/postgresql/data
+    env_file:
+      - config/db/postgredatabase_env
+    networks:
+      - postgredatabase_network
+
+
+  # web container, with django + gunicorn
+  djangoapp:
+    build: .
+    environment:
+      - DJANGO_SETTINGS_MODULE
+    volumes:
+      - .:/opt/services/djangoapp/src
+      - static:/opt/services/djangoapp/static
+      - media:/opt/services/djangoapp/media
+    networks:
+      - postgredatabase_network
+      - nginx_network
+    depends_on:
+      - postgredatabase
+
+  # nginx
+  nginx:
+    image: nginx:1.13
+    ports:
+      - 8000:80
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - static:/opt/services/djangoapp/static
+      - media:/opt/services/djangoapp/media
+    networks:
+      - nginx_network
+    depends_on:
+      - djangoapp
+
+networks:
+  postgredatabase_network:
+    driver: bridge
+  nginx_network:
+    driver: bridge
+
+volumes:
+  postgredatabase_volume:
+  static:
+  media:

@@ -1,0 +1,3 @@
+POSTGRES_USER=postgredatabase_role
+POSTGRES_PASSWORD=postgredatabase_password
+POSTGRES_DB=postgredatabase
