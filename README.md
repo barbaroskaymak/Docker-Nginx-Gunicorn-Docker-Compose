@@ -18,13 +18,5 @@ You need to install `Docker` and `Dockercompose`
 ## Run
 `docker-compose up` 
 
-
-# Docker-Nginx-Gunicorn-Docker-Compose
-# Docker-Nginx-Gunicorn-Docker-Compose
-# Docker-Nginx-Gunicorn-Docker-Compose
-# Docker-Nginx-Gunicorn-Docker-Compose
-# Docker-Nginx-Gunicorn-Docker-Compose
-# Docker-Nginx-Gunicorn-Docker-Compose
-# Docker-Nginx-Gunicorn-Docker-Compose
-# Docker-Nginx-Gunicorn-Docker-Compose
-# Docker-Nginx-Gunicorn-Docker-Compose
+## OR
+`docker exec -ti dockerid bash and cd honeypot and python manage.py makemigrations and python manage.py migrate`
